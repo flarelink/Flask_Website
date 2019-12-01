@@ -1,5 +1,6 @@
 from datetime import datetime
-from flask_site import db, login_manager
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from flask_site import db, login_manager, app
 from flask_login import UserMixin
 
 
@@ -17,6 +18,21 @@ class User(db.Model, UserMixin):
     image_file = db.Column(db.String(20), nullable=False, default='default.png')  # profile picture
     password = db.Column(db.String(60), nullable=False)
     posts = db.relationship('Post', backref='author', lazy=True)  # makes reference of user connected to post
+
+    # 30 minutes to allow for password reset
+    def get_reset_token(self, expires_sec=1800):
+        s = Serializer(app.config['SECRET_KEY'], expires_sec)
+        return s.dumps({'user_id': self.id}).decode('utf-8')
+
+    # verify the reset
+    @staticmethod
+    def verify_reset_token(token):
+        s = Serializer(app.config['SECRET_KEY'])
+        try:
+            user_id = s.loads(token)['user_id']
+        except:
+            return None
+        return User.query.get(user_id)
 
     # how object is printed
     def __repr__(self):
