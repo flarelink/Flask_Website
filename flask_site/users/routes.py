@@ -14,6 +14,10 @@ users = Blueprint('users', __name__)
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
+    else:
+        return redirect(url_for('main.home'))
+    # Humza - commenting this out so that other users won't be created on website
+    """
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -23,6 +27,7 @@ def register():
         flash('Your account has been created! You are now able to log in!', 'success')
         return redirect(url_for('users.login'))  # redirect to login page
     return render_template('users_html/register.html', title='Register', form=form)
+    """
 
 
 # login page
