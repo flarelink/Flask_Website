@@ -2,5 +2,31 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <h1>About Page</h1>
+    <div class="content-section">
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ url_for('static', filename='profile_pics/face.png') }}">
+      </div>
+        <h1>Humza Syed</h1>
+          <p>
+            Hi! My name is Humza Syed and this is my portfolio website! I created the base website with the help of a
+            Flask Python tutorial and have since iterated on it. Below is a small description of my credentials and if
+            you would like a more detailed overview, you can find my resume on the navigation bar at the top of the
+            website. :)
+          </p>
+          <p>
+            I recently graduated with a Bachelors and Masters of Science in Computer Engineering, with a concentration
+            in Machine Learning, from the Rochester Institute of Technology. I am a dedicated individual looking to
+            utilize my skill set for a machine learning engineering job or data scientist job. I have previously
+            worked on modeling deep artificial neural networks and have implemented a variety of machine learning
+            algorithms. Prior to this, I worked in hardware verification and design for FPGA applications.
+          </p>
+
+          <p>
+            During my graduate studies, I joined the Neuromorphic AI Lab and created various machine learning
+            architectures. In this lab I developed a more comprehensive software skill set as well as a greater
+            understanding of the artificial intelligence field. Additionally, I've taken courses to improve my
+            mastery and understanding of the core concepts of machine learning.
+          </p>
+
+    </div>
 {% endblock content %}

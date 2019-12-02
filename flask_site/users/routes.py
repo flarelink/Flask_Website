@@ -1,4 +1,5 @@
-from flask import render_template, url_for, flash, redirect, request, Blueprint
+import os
+from flask import current_app, render_template, url_for, flash, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_site import db, bcrypt
 from flask_site.db_models import User, Post
@@ -61,7 +62,7 @@ def account():
             picture_file = save_picture(form.picture.data)
             current_user.image_file = picture_file
             if old_pic != 'default.png':
-                os.remove(os.path.join(app.root_path, 'static/profile_pics', old_pic))
+                os.remove(os.path.join(current_app.root_path, 'static/profile_pics', old_pic))
         current_user.username = form.username.data
         current_user.email = form.email.data
         db.session.commit()
