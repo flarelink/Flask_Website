@@ -30,84 +30,96 @@ Allows reuse of code, such as if/else title portion in the <head> block.
 </head>
 
 <body>
+    <div id="root">
+        <!-- Header with navbar -->
+        <header class="site-header">
+          <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+            <div class="container">
+              <a class="navbar-brand mr-4" href="/">Humza Syed's Portfolio</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarToggle">
+                <div class="navbar-nav mr-auto">
+                  <a class="nav-item nav-link" href="{{ url_for('main.home') }}">Home</a>
+                  <a class="nav-item nav-link" href="{{ url_for('main.about') }}">About</a>
+                  <a class="nav-item nav-link" href="{{ url_for('main.resume') }}">Resume</a>
+                  <a class="nav-item nav-link" href="{{ url_for('main.projects') }}">Projects</a>
+                  <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="checkbox">
+                        <input type="checkbox" id="checkbox" />
+                        <div class="slider round"></div>
+                    </label>
+                    <em>Dark Mode!</em>
+                  </div>
 
-    <!-- Header with navbar -->
-    <header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
-        <div class="container">
-          <a class="navbar-brand mr-4" href="/">Humza Syed's Portfolio</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{{ url_for('main.home') }}">Home</a>
-              <a class="nav-item nav-link" href="{{ url_for('main.about') }}">About</a>
-              <a class="nav-item nav-link" href="{{ url_for('main.resume') }}">Resume</a>
-            </div>
-            <!-- Navbar Right Side -->
-            <div class="navbar-nav">
-              {% if current_user.is_authenticated %}
-                <a class="nav-item nav-link" href="{{ url_for('posts.new_post') }}">New Post</a>
-                <a class="nav-item nav-link" href="{{ url_for('users.account') }}">Account</a>
-                <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a>
-                <a class="nav-item nav-link" href="https://www.linkedin.com/in/hmsyed/" target="_blank"><i class="fa fa-linkedin"></i></a>
-                <a class="nav-item nav-link" href="https://github.com/flarelink" target="_blank"><i class="fa fa-github"></i></a>
-              {% else %}
-              <a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
-              <!-- Humza - won't need this since this'll be for myself to post
-              <a class="nav-item nav-link" href="{{ url_for('users.register') }}">Register</a>
-              -->
-              <a class="nav-item nav-link" href="https://www.linkedin.com/in/hmsyed/" target="_blank"><i class="fa fa-linkedin"></i></a>
-              <a class="nav-item nav-link" href="https://github.com/flarelink" target="_blank"><i class="fa fa-github"></i></a>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      </nav>
-    </header>
-
-    <!-- Main that has references to other paths, like latest posts and announcements -->
-    <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-8">
-
-          <!-- allows for flashed messages -->
-          {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-              {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">
-                    {{ message }}
                 </div>
-              {% endfor %}
-            {% endif %}
-          {% endwith %}
+                <!-- Navbar Right Side -->
+                <div class="navbar-nav">
+                  {% if current_user.is_authenticated %}
+                    <a class="nav-item nav-link" href="{{ url_for('posts.new_post') }}">New Post</a>
+                    <a class="nav-item nav-link" href="{{ url_for('users.account') }}">Account</a>
+                    <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a>
+                    <a class="nav-item nav-link" href="https://www.linkedin.com/in/hmsyed/" target="_blank"><i class="fa fa-linkedin"></i></a>
+                    <a class="nav-item nav-link" href="https://github.com/flarelink" target="_blank"><i class="fa fa-github"></i></a>
+                  {% else %}
+                  <a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
+                  <!-- Humza - won't need this since this'll be for myself to post
+                  <a class="nav-item nav-link" href="{{ url_for('users.register') }}">Register</a>
+                  -->
+                  <a class="nav-item nav-link" href="https://www.linkedin.com/in/hmsyed/" target="_blank"><i class="fa fa-linkedin"></i></a>
+                  <a class="nav-item nav-link" href="https://github.com/flarelink" target="_blank"><i class="fa fa-github"></i></a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </nav>
+        </header>
 
-          <!-- block content -->
-          {% block content %}
-          {% endblock %}
-        </div>
-        <div class="col-md-4"> <!-- modified from md-4 to md-3 -->
-          <div class="content-section">
-            <h3>Extra Sidebar</h3>
-            <p class='text-muted'>You can put any information here you'd like.
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Latest Posts</li>
-                <li class="list-group-item list-group-item-light">Announcements</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light">etc</li>
-              </ul>
-            </p>
+        <!-- Main that has references to other paths, like latest posts and announcements -->
+        <main role="main" class="container">
+          <div class="row">
+            <div class="col-md-8">
+
+              <!-- allows for flashed messages -->
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+
+              <!-- block content -->
+              {% block content %}
+              {% endblock %}
+            </div>
+            <div class="col-md-4"> <!-- modified from md-4 to md-3 -->
+              <div class="content-section">
+                <h3>Extra Sidebar</h3>
+                <p>You can put any information here you'd like.
+                  <ul class="list-group">
+                    <li class="list-group-item list-group-item-light">Latest Posts</li>
+                    <li class="list-group-item list-group-item-light">Announcements</li>
+                    <li class="list-group-item list-group-item-light">Calendars</li>
+                    <li class="list-group-item list-group-item-light">etc</li>
+                  </ul>
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </main>
+        </main>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <!-- Custom JS file reference -->
+        <script type="text/javascript" src="{{ url_for('static', filename='main.js')}} "></script>
+    </div>
   </body>
 
 </html>

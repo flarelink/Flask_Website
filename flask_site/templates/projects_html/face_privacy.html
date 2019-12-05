@@ -1,0 +1,48 @@
+<!-- extend from layout html -->
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="content-section">
+        <!-- form -->
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Face Privacy</legend>
+
+                <!-- input image given -->
+                <div class="form-group">
+                    {{ form.picture.label() }}
+                    {{ form.picture(class="form-control-file") }}
+                    {% if form.picture.errors %}
+                        {% for error in form.picture.errors %}
+                            <span class="text-danger">{{ error }}</span></br>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </fieldset>
+
+            <h1> </h1>
+            <h3> Your Input Image: </h3>
+            <div class="media">
+                <img class="img-fluid" src="{{ image_file }}">
+            </div>
+
+            <h1> </h1>
+            <h3> YOLOv3 Output: </h3>
+            <div class="media">
+                <img class="img-fluid" src="{{ yolo_image_out }}">
+            </div>
+
+            <h1> </h1>
+            <h3> Haar Cascade Output: </h3>
+            <div class="media">
+                <img class="img-fluid" src="{{ haar_image_out }}">
+            </div>
+
+            <h1> </h1>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}

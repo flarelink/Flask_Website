@@ -1,0 +1,19 @@
+<!-- extend from layout html -->
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="content-section">
+        <h1>Projects</h1>
+        <h3>(Click the images to go to project pages)</h3>
+        <div class="media">
+            <a href="{{ url_for('projects.face_privacy') }}">
+                <img src="{{ url_for('static', filename='project_showcase_pics/index_yolo_output.png') }}"
+                     width="184" height="256" title="Kyoto">
+            </a>
+        </div>
+        <h3>Face Privacy</h3>
+            <p>Project to detect faces in photos and blur the faces to allow for privacy of individuals.</p>
+            <p>Two methods are shown, namely the YOLOv3 deep neural network and the Haar Cascades classifier.
+                Both approaches are pretrained on images of faces and show a comparison of how they perform.</p>
+    </div>
+{% endblock content %}

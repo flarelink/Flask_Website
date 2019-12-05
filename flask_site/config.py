@@ -9,3 +9,4 @@ class Config:
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ.get('DB_USER')  # stored in .bashrc
     MAIL_PASSWORD = os.environ.get('DB_PASS')  # stored in .bashrc
+    SQLALCHEMY_TRACK_MODIFICATIONS = False

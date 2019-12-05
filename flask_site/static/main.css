@@ -1,12 +1,104 @@
+/* dark mode -- utilized from https://dev.to/ananyaneogi/create-a-dark-light-mode-switch-with-css-variables-34l8 */
+:root {
+    --primary-color: #302AE6;
+    --secondary-color: #536390;
+    --font-color: #424242;
+    --bg-color: #fff;
+    --heading-color: #292922;
+    --content-color: #ffffff;
+    --article-title-color: #444444;
+}
+
+/* dark mode */
+[data-theme="dark"] {
+    --primary-color: #9A97F3;
+    --secondary-color: #ffffff;
+    --font-color: #e1e1ff;
+    --bg-color: #161625;
+    --heading-color: #818cab;
+    --content-color: #424242;
+    --article-title-color: #ffffff;
+}
+
 body {
-  background: #fafafa;
-  color: #333333;
+  /* dark mode */
+  background-color: var(--bg-color);
+  color: var(--font-color);
+  /*background: #fafafa;
+  color: #333333;*/
   margin-top: 5rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #444444;
+h1, h2, h3, h4, h5, h6, p {
+  /*color: #444444;*/
+  color: var(--secondary-color); /* dark mode */
 }
+
+
+a {
+    color: var(--primary-color); /* dark mode */
+}
+
+/*dark mode - Simple css to style it like a toggle switch*/
+.theme-switch-wrapper {
+  display: flex;
+  align-items: flex-end;
+
+  em {
+    margin-left: 10px;
+    font-size: 1rem;
+  }
+}
+.theme-switch {
+  display: inline-block;
+  height: 24px;
+  position: relative;
+  width: 50px;
+}
+
+.theme-switch input {
+  display:none;
+}
+
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider:before {
+  background-color: #fff;
+  bottom: 4px;
+  content: "";
+  height: 16px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 16px;
+}
+
+input:checked + .slider {
+  background-color: #66bb6a;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 24px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/*dark mode - closing*/
 
 .bg-steel {
   background-color: #5f788a;
@@ -25,7 +117,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .content-section {
-  background: #ffffff;
+  background: var(--content-color); /* dark mode */
   padding: 10px 20px;
   border: 1px solid #dddddd;
   border-radius: 3px;
@@ -33,7 +125,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .article-title {
-  color: #444444;
+  color: var(--article-title-color); /* dark mode */
 }
 
 a.article-title:hover {

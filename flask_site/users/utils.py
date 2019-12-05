@@ -15,7 +15,7 @@ def save_picture(form_picture):
 
     output_size = (125, 125)
     i = Image.open(form_picture)
-    i.resize(output_size)
+    i = i.resize((output_size), Image.ANTIALIAS)
     i.save(picture_path)
 
     return picture_fn
