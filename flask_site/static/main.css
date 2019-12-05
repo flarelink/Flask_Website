@@ -44,11 +44,16 @@ a {
   display: flex;
   align-items: flex-end;
 
-  em {
-    margin-left: 10px;
-    font-size: 1rem;
-  }
+
 }
+
+em {
+    margin-left: 5px;
+    margin-bottom: 7px;
+    font-size: 1rem;
+    color: #cbd5db;
+  }
+
 .theme-switch {
   display: inline-block;
   height: 24px;

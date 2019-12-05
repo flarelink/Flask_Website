@@ -6,5 +6,5 @@ from wtforms import SubmitField
 class BlurInputFace(FlaskForm):
     picture = FileField('Input Your Picture with Faces to be Blurred. <br/>'
                         '(Your input image will be displayed after you hit submit.)',
-                        validators=[FileAllowed(['jpg', 'png'])])
+                        validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     submit = SubmitField('Submit')

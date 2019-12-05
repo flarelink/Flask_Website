@@ -1,5 +1,5 @@
 import os
-import glob
+import time
 from PIL import Image
 from flask import current_app
 
@@ -24,8 +24,11 @@ def save_face_picture(form_picture):
 
 
 # remove all face image files
-def remove_face_images():
-    path = (os.path.join(current_app.root_path, 'static/face_image/*'))
-    files = glob.glob(path)
-    for f in files:
-        os.remove(f)
+def cleanup(path):
+    now = time.time() - (24 * 60 * 60)  # delete if at least a day old
+    for root, dirs, files in os.walk(path, topdown=False):
+        for f in files:
+            file_path = os.path.join(path, f)
+            stat = os.stat(file_path)
+            if stat.st_mtime <= now:
+                os.remove(file_path)

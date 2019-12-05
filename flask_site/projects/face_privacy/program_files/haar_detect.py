@@ -17,11 +17,11 @@ import cv2
 """
 
 
-def haar_face_detection(imgsPath, xmlPath, scaling, size, save_path):
+def haar_face_detection(image_file_path, xmlPath, scaling, size, save_path):
     """
     Detects faces in images and draws a bounding box around the faces using haar cascading method
 
-    :param imgsPath: Path to the input images directory
+    :param image_file_path : Path to the input image
     :param xmlPath : Path to the xml file for detecting the front of people's faces
     :param scaling : Parameter for classifier to determine the tolerance of small/big faces in image
     :param size    : Parameter for classifier to know what the minimum sized face is
@@ -35,57 +35,52 @@ def haar_face_detection(imgsPath, xmlPath, scaling, size, save_path):
     # keep track of how many images processed on
     counter = 0
 
-    for image_file in (os.listdir(imgsPath)):
+    # check file type
+    file_type = image_file_path.split('.')[-1].lower()
 
-        # image path
-        image_path = os.path.join(imgsPath, image_file)
+    # if image file then do the following processing
+    if file_type == 'png' or file_type == 'jpg' or file_type == 'jpeg':
 
-        # check file type
-        file_type = image_path.split('.')[-1].lower()
+        # read input image
+        image = cv2.imread(image_file_path)
+        gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-        # if image file then do the following processing
-        if (file_type == 'png' or file_type == 'jpg' or file_type == 'jpeg'):
+        # face and eye detection classifiers using haar features
+        face_classifier = cv2.CascadeClassifier(xmlPath)
 
-            # read input image
-            image = cv2.imread(image_path)
-            gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        # detect faces
+        faces = face_classifier.detectMultiScale(
+            gray_image,
+            scaleFactor=scaling,
+            minNeighbors=10,
+            minSize=(size, size),
+            flags=cv2.CASCADE_SCALE_IMAGE
+        )
 
-            # face and eye detection classifiers using haar features
-            face_classifier = cv2.CascadeClassifier(xmlPath)
+        # draw rectangles around faces
+        for (x, y, w, h) in faces:
+            # draw the bounding box - commented out because I don't want a green box
+            # around the faces, but left here if the user wants to add this in
+            # cv2.rectangle(image, (x,y), (x+w,y+h), (0,255,0), 2)
 
-            # detect faces
-            faces = face_classifier.detectMultiScale(
-                gray_image,
-                scaleFactor=scaling,
-                minNeighbors=10,
-                minSize=(size, size),
-                flags=cv2.CASCADE_SCALE_IMAGE
-            )
+            # apply gaussian blur on faces
+            face = image[y:y + h, x:x + w]
+            face = cv2.GaussianBlur(face, (23, 23), 30)
 
-            # draw rectangles around faces
-            for (x, y, w, h) in faces:
-                # draw the bounding box - commented out because I don't want a green box
-                # around the faces, but left here if the user wants to add this in
-                # cv2.rectangle(image, (x,y), (x+w,y+h), (0,255,0), 2)
+            # put blurred face on new image
+            image[y:y + face.shape[0], x:x + face.shape[1]] = face
 
-                # apply gaussian blur on faces
-                face = image[y:y + h, x:x + w]
-                face = cv2.GaussianBlur(face, (23, 23), 30)
+        # cv2.imshow('Faces found', image)
 
-                # put blurred face on new image
-                image[y:y + face.shape[0], x:x + face.shape[1]] = face
+        # strip file extension of original image so we can write similar output image
+        # i.e.) people.png --> people_output.png
+        image_file = os.path.splitext(image_file_path)[0]
+        # cv2.imwrite(os.path.join(os.getcwd(), 'out_images_haar', (image_file + '_output.png')), image)
+        cv2.imwrite(os.path.join(save_path, (image_file + '_haar_output.png')), image)
+        # cv2.waitKey(0)
+        cv2.destroyAllWindows()
 
-            # cv2.imshow('Faces found', image)
+        # print('Image {} was completed!'.format(counter))
+        counter += 1
 
-            # strip file extension of original image so we can write similar output image
-            # i.e.) people.png --> people_output.png
-            image_file = os.path.splitext(image_file)[0]
-            #cv2.imwrite(os.path.join(os.getcwd(), 'out_images_haar', (image_file + '_output.png')), image)
-            cv2.imwrite(os.path.join(save_path, (image_file + '_haar_output.png')), image)
-            # cv2.waitKey(0)
-            cv2.destroyAllWindows()
-
-            #print('Image {} was completed!'.format(counter))
-            counter += 1
-
-    #print('Processed all {} images! :D'.format(counter))
+    # print('Processed all {} images! :D'.format(counter))
