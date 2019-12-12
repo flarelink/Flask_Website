@@ -12,8 +12,9 @@ I've added my own custom pages such as:
 - resume
 - projects and pages for each project
 
-Under the projects page is my face privacy project. Unfortunately GitHub doesn't allow for files over 100MB so you can find
-the weights file for the yolov3 model at:
+Under the projects page is my face privacy project; other projects are currently in development.
+
+Unfortunately GitHub doesn't allow for files over 100MB so you can find the weights file for the yolov3 model at:
 
 https://drive.google.com/file/d/1xYasjU52whXMLT5MtF7RCPQkV66993oR/view
 
