@@ -25,7 +25,7 @@ def save_face_picture(form_picture):
 
 # remove all face image files
 def cleanup(path):
-    now = time.time() - (24 * 60 * 60)  # delete if at least a day old
+    now = time.time() - 60  # delete if at least a minute old
     for root, dirs, files in os.walk(path, topdown=False):
         for f in files:
             file_path = os.path.join(path, f)

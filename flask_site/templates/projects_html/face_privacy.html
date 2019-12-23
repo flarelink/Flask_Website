@@ -21,28 +21,35 @@
                 </div>
             </fieldset>
 
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+
             <h1> </h1>
-            <h3> Your Input Image: </h3>
+            <h3> Input Image: </h3>
             <div class="media">
-                <img class="img-fluid" src="{{ image_file }}">
+                <div style="max-width: 250px" >
+                    <img class="img-fluid" src="{{ image_file }}" >
+                </div>
             </div>
 
             <h1> </h1>
             <h3> YOLOv3 Output: </h3>
             <div class="media">
-                <img class="img-fluid" src="{{ yolo_image_out }}">
+                <div style="max-width: 250px" >
+                    <img class="img-fluid" src="{{ yolo_image_out }}">
+                </div>
             </div>
 
             <h1> </h1>
             <h3> Haar Cascade Output: </h3>
             <div class="media">
-                <img class="img-fluid" src="{{ haar_image_out }}">
+                <div style="max-width: 250px" >
+                    <img class="img-fluid" src="{{ haar_image_out }}">
+                </div>
             </div>
 
-            <h1> </h1>
-            <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
-            </div>
+
         </form>
     </div>
 {% endblock content %}
