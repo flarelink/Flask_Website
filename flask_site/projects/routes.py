@@ -1,10 +1,16 @@
 import os
-import glob
 from flask import current_app, render_template, url_for, flash, redirect, request, Blueprint
+
+# Face Privacy
 from flask_site.projects.face_privacy.forms import BlurInputFace
 from flask_site.projects.face_privacy.utils import save_face_picture, cleanup
 from flask_site.projects.face_privacy.program_files.yolo_detect import yolo_face_detection
 from flask_site.projects.face_privacy.program_files.haar_detect import haar_face_detection
+
+# Anime Recommendation System
+from flask_site.projects.anime_rec.forms import AnimeRec
+import argparse
+from flask_site.projects.anime_rec.program_files.recommender import content_based
 
 projects = Blueprint('projects', __name__)
 
@@ -17,9 +23,9 @@ def projects_main():
 
 @projects.route("/projects/face_privacy", methods=['GET', 'POST'])
 def face_privacy():
-    image_file = url_for('static', filename='face_image/null.jpg')
-    yolo_image_out = url_for('static', filename='face_image/null.jpg')
-    haar_image_out = url_for('static', filename='face_image/null.jpg')
+    image_file = url_for('static', filename='project_showcase_pics/index.png')
+    yolo_image_out = url_for('static', filename='project_showcase_pics/index_haar_output.png')
+    haar_image_out = url_for('static', filename='project_showcase_pics/index_yolo_output.png')
     form = BlurInputFace()
     if form.validate_on_submit():
         if form.picture.data:  # blur the input picture if it has a face
@@ -60,4 +66,34 @@ def face_privacy():
                            image_file=image_file,
                            yolo_image_out=yolo_image_out,
                            haar_image_out=haar_image_out,
+                           form=form)
+
+
+@projects.route("/projects/anime_rec", methods=['GET', 'POST'])
+def anime_rec():
+    form = AnimeRec()
+    if form.validate_on_submit():
+        parser = argparse.ArgumentParser()
+        args = parser.parse_args()
+        args.dataset_path = os.path.join(current_app.root_path, 'projects/anime_rec/program_files/Anime.csv')
+        args.username = form.username.data if form.username.data else None
+        args.sel_anime = form.sel_anime.data
+        args.watching_list = True if form.watching_list.data else False
+
+        if form.num_recs.data <= 0:
+            args.num_recs = 1
+        elif form.num_recs.data >= 11:
+            args.num_recs = 10
+        else:
+            args.num_recs = form.num_recs.data
+
+        recommendations, image_urls = content_based(args)
+
+        return render_template('projects_html/anime_rec_output.html',
+                               title='Anime Recommendation System',
+                               recs=zip(recommendations, image_urls),
+                               form=form)
+
+    return render_template('projects_html/anime_rec.html',
+                           title='Anime Recommendation System',
                            form=form)

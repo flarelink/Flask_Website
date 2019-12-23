@@ -4,16 +4,33 @@
 {% block content %}
     <div class="content-section">
         <h1>Projects</h1>
-        <h3>(Click the images to go to project pages)</h3>
+        <h3>Click the project names to be redirected to wonders!~</h3>
+    </div>
+
+    <div class="content-section">
         <div class="media">
-            <a href="{{ url_for('projects.face_privacy') }}">
-                <img src="{{ url_for('static', filename='project_showcase_pics/index_yolo_output.png') }}"
-                     width="184" height="256" title="Kyoto">
-            </a>
+            <img src="{{ url_for('static', filename='project_showcase_pics/index_yolo_output.png') }}"
+                 width="184" height="256" title="Blurred_Face">
         </div>
-        <h3>Face Privacy</h3>
+        <h3><a href="{{ url_for('projects.face_privacy') }}">Face Privacy</a></h3>
             <p>Project to detect faces in photos and blur the faces to allow for privacy of individuals.</p>
             <p>Two methods are shown, namely the YOLOv3 deep neural network and the Haar Cascades classifier.
                 Both approaches are pretrained on images of faces and show a comparison of how they perform.</p>
     </div>
+
+    <div class="content-section">
+        <div class="media">
+            <img src="{{ url_for('static', filename='project_showcase_pics/index_yolo_output.png') }}"
+                 width="184" height="256" title="Anime_Recommender">
+        </div>
+        <h3><a href="{{ url_for('projects.anime_rec') }}">Anime Recommendation System</a></h3>
+            <p>
+                A fun content based anime recommendation system. The animes on myanimelist were scraped on 12/21/19.
+            </p>
+            <p>
+                The recommender system is initially based on the similarity of genre, type (TV, OVA, etc.), and
+                studio(s). It is then based off the shrinkage estimation of the scores and number of people that scored.
+            </p>
+    </div>
+
 {% endblock content %}

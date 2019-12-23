@@ -1,0 +1,43 @@
+<!-- extend from layout html -->
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="content-section">
+        <!-- form -->
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}  <!-- cross site protection -->
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Anime Recommendation System</legend>
+
+                <!-- selected anime -->
+                <div class="form-group">
+                    {{ form.sel_anime.label(class="form-control-label") }}
+                    {{ form.sel_anime(class="form-control form-control-lg") }}
+                </div>
+
+                <!-- number of recommendations -->
+                <div class="form-group">
+                    {{ form.num_recs.label(class="form-control-label") }}
+                    {{ form.num_recs(class="form-control form-control-lg") }}
+                </div>
+
+                <!-- username -->
+                <div class="form-group">
+                    {{ form.username.label(class="form-control-label") }}
+                    {{ form.username(class="form-control form-control-lg") }}
+                </div>
+
+                <!-- watching_list -->
+                <div class="form-group">
+                    {{ form.watching_list.label(class="form-control-label") }}
+                    {{ form.watching_list(class="form-control form-control-lg") }}
+                </div>
+
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+
+{% endblock content %}
