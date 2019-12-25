@@ -24,7 +24,14 @@ def about():
 def resume():
     return render_template('main_html/resume.html', title='Resume')
 
+
 # projects page
 @main.route('/projects')
 def projects():
     return render_template('main_html/projects_home.html', title='Projects')
+
+
+# publications page
+@main.route('/publications')
+def publications():
+    return render_template('main_html/publications.html', title='Publications')
