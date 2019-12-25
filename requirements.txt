@@ -7,7 +7,7 @@
 # flask_site/main/routes.py: 1
 # flask_site/posts/routes.py: 1
 # flask_site/projects/face_privacy/utils.py: 4
-# flask_site/projects/routes.py: 3
+# flask_site/projects/routes.py: 2
 # flask_site/users/routes.py: 2
 # flask_site/users/utils.py: 4
 Flask == 1.1.1
@@ -30,6 +30,7 @@ Flask_Mail == 0.9.1
 Flask_SQLAlchemy == 2.4.1
 
 # flask_site/posts/forms.py: 1
+# flask_site/projects/anime_rec/forms.py: 1
 # flask_site/projects/face_privacy/forms.py: 2
 # flask_site/users/forms.py: 2
 Flask_WTF == 0.14.2
@@ -39,9 +40,13 @@ Flask_WTF == 0.14.2
 Pillow == 6.2.0
 
 # flask_site/posts/forms.py: 2,3
+# flask_site/projects/anime_rec/forms.py: 3,4
 # flask_site/projects/face_privacy/forms.py: 3
 # flask_site/users/forms.py: 4
 WTForms == 2.2.1
+
+# flask_site/projects/anime_rec/program_files/utils.py: 1
+bs4 == 0.0.1
 
 # flask_site/projects/face_privacy/program_files/yolo_detect.py: 13
 imutils == 0.5.3
@@ -55,3 +60,16 @@ numpy == 1.17.4
 # flask_site/projects/face_privacy/program_files/haar_detect.py: 11
 # flask_site/projects/face_privacy/program_files/yolo_detect.py: 11
 opencv_python == 4.1.2.30
+
+# flask_site/projects/anime_rec/program_files/recommender.py: 1
+# flask_site/projects/anime_rec/program_files/utils.py: 3
+pandas == 0.25.3
+
+# flask_site/projects/anime_rec/program_files/utils.py: 2
+requests == 2.22.0
+
+# flask_site/projects/anime_rec/program_files/recommender.py: 3,4
+scikit_learn == 0.22
+
+# flask_site/projects/anime_rec/program_files/utils.py: 5,6
+selenium == 3.141.0

@@ -26,7 +26,7 @@ Allows reuse of code, such as if/else title portion in the <head> block.
     {% else %}
     <title>Humza Syed</title>
     {% endif %}
-
+    <link rel="shortcut icon" href="{{ url_for('static', filename='general/favicon.ico')}}" />
 </head>
 
 <body>
@@ -35,7 +35,9 @@ Allows reuse of code, such as if/else title portion in the <head> block.
         <header class="site-header">
           <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
             <div class="container">
-              <a class="navbar-brand mr-4" href="/">Humza Syed's Portfolio</a>
+              <a class="navbar-brand mr-4" href="/">
+                  <img src="{{ url_for('static', filename='general/favicon-32x32.png')}} ">
+              </a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -79,7 +81,7 @@ Allows reuse of code, such as if/else title portion in the <head> block.
         <!-- Main that has references to other paths, like latest posts and announcements -->
         <main role="main" class="container">
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12"> <!-- changed from md-8 to md-12 -->
 
               <!-- allows for flashed messages -->
               {% with messages = get_flashed_messages(with_categories=true) %}
@@ -96,7 +98,9 @@ Allows reuse of code, such as if/else title portion in the <head> block.
               {% block content %}
               {% endblock %}
             </div>
-            <div class="col-md-4"> <!-- modified from md-4 to md-3 -->
+
+            <!--
+            <div class="col-md-4">
               <div class="content-section">
                 <h3>Extra Sidebar</h3>
                 <p>You can put any information here you'd like.
@@ -109,6 +113,7 @@ Allows reuse of code, such as if/else title portion in the <head> block.
                 </p>
               </div>
             </div>
+            -->
           </div>
         </main>
 
