@@ -3,3 +3,4 @@ __pycache__/
 *.weights
 face_image/
 *.log
+*.db
