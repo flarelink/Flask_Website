@@ -2,19 +2,41 @@ import pandas as pd
 import os
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from flask_site.projects.anime_rec.program_files.utils import scrape_image_url, scrape_user_data_from_username
+from flask_site.projects.anime_rec.program_files.utils import scrape_user_data_from_username
 
 
 # Helper functions
 def get_name_from_id(df, id):
+    """
+    Get the anime name using the dataframe and anime id
+
+    :param df: (pd.Dataframe) anime dataframe
+    :param id: (int) anime id
+    :return: (str) anime name
+    """
     return df[df.animeID == id]["name"].values[0]
 
 
 def get_id_from_name(df, name):
+    """
+    Get the anime id using the dataframe and anime name
+
+    :param df: (pd.Dataframe) anime dataframe
+    :param name: (str) anime name
+    :return: (int) anime id
+    """
     return df[df.name == name]["animeID"].values[0]
 
 
 def combine_features(row, features, bad_chars):
+    """
+    Combine desired features for each row in the dataframe and filter out bad characters
+
+    :param row: (pd row) the current row of the dataframe being assessed
+    :param features: (list of str) the desired columns from dataframe
+    :param bad_chars: (str trans) characters to drop from string
+    :return: (str) combined features
+    """
     features_string = ''
     for f in features:
         features_string += row[f] + ' '
@@ -24,6 +46,12 @@ def combine_features(row, features, bad_chars):
 
 # Main function
 def content_based(args):
+    """
+    Content based recommendation using cosine similarity and sorting relative to anime scores
+
+    :param args: input arguments containing: dataset_path, username, watching_list, sel_anime, num_recs, anime_images
+    :return: (list of str, list of str, str) recommendations list, image references list, and selected anime
+    """
     # load data into Dataframe
     anime_df = pd.read_csv(args.dataset_path)
     anime_df.columns = anime_df.columns.str.lstrip()  # there was a space in the anime csv column header

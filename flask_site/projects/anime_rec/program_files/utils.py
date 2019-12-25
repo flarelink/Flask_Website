@@ -30,6 +30,14 @@ def scroll_down(driver):
 
 
 def scrape_user_data_from_username(username=None, inc_watching=True):
+    """
+    Function to scrape user data to ensure that we aren't giving recommendations from the
+    animes they've already seen or are watching
+
+    :param username: (str) the username of the individual
+    :param inc_watching: (Bool) Flag to say if we want to scrape from their watching list
+    :return: (pd.Dataframe) user information dataframe
+    """
     # reference: http://theautomatic.net/2019/01/19/scraping-data-from-javascript-webpage-python/
     df = pd.DataFrame(columns=['animeID', 'scored', 'status'])
     pos = 0
@@ -90,11 +98,8 @@ def scrape_image_url(anime_id):
     """
     Scrapes anime url from myanimelist.net using the anime_id
 
-    Parameters:
-    anime_id (str): anime id to scrape image from
-
-    Returns:
-    anime_img_url (str): the url to the image of the anime
+    :param (str) anime id to scrape image from
+    :return: (str) the url to the image of the anime
     """
     source = requests.get('https://myanimelist.net/anime/' + str(anime_id))
     if source.status_code == 200:
