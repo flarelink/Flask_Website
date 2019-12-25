@@ -91,6 +91,7 @@ def anime_rec():
         recommendations, image_urls, sel_anime = content_based(args)
         image_urls_path = [url_for('static', filename=url) for url in image_urls]
 
+        flash('Here are some recommendations! :D', 'success')
         return render_template('projects_html/anime_rec_output.html',
                                title='Anime Recommendation System',
                                recs=zip(recommendations, image_urls_path),

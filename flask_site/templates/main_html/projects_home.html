@@ -16,12 +16,14 @@
             <p>Project to detect faces in photos and blur the faces to allow for privacy of individuals.</p>
             <p>Two methods are shown, namely the YOLOv3 deep neural network and the Haar Cascades classifier.
                 Both approaches are pretrained on images of faces and show a comparison of how they perform.</p>
+            <a href="https://github.com/flarelink/Background_Face_Privacy" target="_blank">Project Code</a>
+
     </div>
 
     <div class="content-section">
         <div class="media">
-            <img src="{{ url_for('static', filename='project_showcase_pics/index_yolo_output.png') }}"
-                 width="184" height="256" title="Anime_Recommender">
+            <img src="{{ url_for('static', filename='project_showcase_pics/anime_recs.png') }}"
+                 width="50%" height=auto title="Anime_Recommender">
         </div>
         <h3><a href="{{ url_for('projects.anime_rec') }}">Anime Recommendation System</a></h3>
             <p>
@@ -31,6 +33,8 @@
                 The recommender system is initially based on the similarity of genre, type (TV, OVA, etc.), and
                 studio(s). It is then based off the shrinkage estimation of the scores and number of people that scored.
             </p>
+            <a href="https://github.com/flarelink/Anime_Recommender_System" target="_blank">Project Code</a>
+
     </div>
 
 {% endblock content %}
