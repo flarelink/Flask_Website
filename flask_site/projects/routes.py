@@ -79,6 +79,7 @@ def anime_rec():
         args.username = form.username.data if form.username.data else None
         args.sel_anime = form.sel_anime.data
         args.watching_list = True if form.watching_list.data else False
+        args.anime_images = 'anime_imgs'
 
         if form.num_recs.data <= 0:
             args.num_recs = 1
@@ -87,11 +88,13 @@ def anime_rec():
         else:
             args.num_recs = form.num_recs.data
 
-        recommendations, image_urls = content_based(args)
+        recommendations, image_urls, sel_anime = content_based(args)
+        image_urls_path = [url_for('static', filename=url) for url in image_urls]
 
         return render_template('projects_html/anime_rec_output.html',
                                title='Anime Recommendation System',
-                               recs=zip(recommendations, image_urls),
+                               recs=zip(recommendations, image_urls_path),
+                               anime_name=sel_anime,
                                form=form)
 
     return render_template('projects_html/anime_rec.html',
