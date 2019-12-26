@@ -9,7 +9,6 @@ from flask_site.projects.face_privacy.program_files.haar_detect import haar_face
 
 # Anime Recommendation System
 from flask_site.projects.anime_rec.forms import AnimeRec
-import argparse
 from flask_site.projects.anime_rec.program_files.recommender import content_based
 
 projects = Blueprint('projects', __name__)
@@ -31,7 +30,6 @@ def face_privacy():
         if form.picture.data:  # blur the input picture if it has a face
 
             # empty directory of face images so we can process on just the new input image for face privacy
-            # TODO - display user's input image on screen
             path_to_faces = (os.path.join(current_app.root_path, 'static/face_image/'))
             cleanup(path_to_faces)
             image_name = save_face_picture(form.picture.data)
@@ -73,13 +71,17 @@ def face_privacy():
 def anime_rec():
     form = AnimeRec()
     if form.validate_on_submit():
-        parser = argparse.ArgumentParser()
-        args = parser.parse_args()
-        args.dataset_path = os.path.join(current_app.root_path, 'projects/anime_rec/program_files/Anime.csv')
-        args.username = form.username.data if form.username.data else None
-        args.sel_anime = form.sel_anime.data
-        args.watching_list = True if form.watching_list.data else False
-        args.anime_images = 'anime_imgs'
+
+        class Anime_Args:
+            def __init__(self):
+                self.dataset_path = os.path.join(current_app.root_path, 'projects/anime_rec/program_files/Anime.csv')
+                self.username = form.username.data if form.username.data else None
+                self.sel_anime = form.sel_anime.data
+                self.watching_list = True if form.watching_list.data else False
+                self.anime_images = 'anime_imgs'
+                self.num_recs = 1
+
+        args = Anime_Args()
 
         if form.num_recs.data <= 0:
             args.num_recs = 1

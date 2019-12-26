@@ -2,5 +2,9 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <embed src="{{ url_for('static', filename='resume/Syed_Resume.pdf') }}" width="752" height="1010">
+    <div class="content-section">
+        <a href="{{ url_for('static', filename='resume/Syed_Resume.pdf') }}" target="_blank">Link to Resume</a>
+    </div>
+    <embed src="{{ url_for('static', filename='resume/Syed_Resume.pdf') }}" width="752px" height="1010px">
+
 {% endblock content %}
