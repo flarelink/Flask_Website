@@ -5,7 +5,7 @@ from wtforms.widgets import html5
 
 
 class AnimeRec(FlaskForm):
-    sel_anime = StringField('Anime recommendations for: (if not found, defaults to Cowboy Bepop)',
+    sel_anime = StringField('Anime recommendations for: (If anime not found, defaults to Cowboy Bepop)',
                             validators=[DataRequired()], default="Naruto")
     num_recs = IntegerField("Number of recommendations: (Maximum of 10)", widget=html5.NumberInput(),
                             validators=[DataRequired()], default=5)

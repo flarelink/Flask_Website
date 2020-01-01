@@ -3,8 +3,10 @@
 
 {% block content %}
     <div class="content-section">
-        <a href="{{ url_for('static', filename='resume/Syed_Resume.pdf') }}" target="_blank">Link to Resume</a>
+        <a href="{{ url_for('static', filename='resume/Syed_Resume.pdf') }}" target="_blank">Download PDF of Resume</a>
     </div>
-    <embed src="{{ url_for('static', filename='resume/Syed_Resume.pdf') }}" width="752px" height="1010px">
+    <div class="content-section">
+        <center><img src="{{ url_for('static', filename='resume/Syed_Resume.png') }}" width="100%" height="auto"></center>
+    </div>
 
 {% endblock content %}

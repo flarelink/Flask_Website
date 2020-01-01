@@ -13,9 +13,10 @@
                  width="184" height="256" title="Blurred_Face">
         </div>
         <h3><a href="{{ url_for('projects.face_privacy') }}">Face Privacy</a></h3>
-            <p>Project to detect faces in photos and blur the faces to allow for privacy of individuals.</p>
+            <p>Project to detect faces in photos and blur the faces to protect the privacy of individuals.</p>
             <p>Two methods are shown, namely the YOLOv3 deep neural network and the Haar Cascades classifier.
-                Both approaches are pretrained on images of faces and show a comparison of how they perform.</p>
+                Both approaches are pretrained on images of faces and this program illustrates a comparison of
+                how they perform to new images.</p>
             <a href="https://github.com/flarelink/Background_Face_Privacy" target="_blank">Project Code</a>
 
     </div>
@@ -30,8 +31,10 @@
                 A fun content based anime recommendation system. The animes on myanimelist were scraped on 12/21/19.
             </p>
             <p>
-                The recommender system is initially based on the similarity of genre, type (TV, OVA, etc.), and
-                studio(s). It is then based off the shrinkage estimation of the scores and number of people that scored.
+                The content based anime recommendation system first takes the cosine similarity between the
+                genre, type (TV, OVA, etc.), and studio(s) of animes.
+                The system then sorts the shows based off the shrinkage estimation of the scores and
+                number of people that scored.
             </p>
             <a href="https://github.com/flarelink/Anime_Recommender_System" target="_blank">Project Code</a>
 
