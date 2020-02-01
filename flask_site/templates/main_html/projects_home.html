@@ -17,7 +17,9 @@
             <p>Two methods are shown, namely the YOLOv3 deep neural network and the Haar Cascades classifier.
                 Both approaches are pretrained on images of faces and this program illustrates a comparison of
                 how they perform to new images.</p>
-            <a href="https://github.com/flarelink/Background_Face_Privacy" target="_blank">Project Code</a>
+            <p>
+                Please see the project code for more details: <a href="https://github.com/flarelink/Background_Face_Privacy" target="_blank">Project Code</a>
+            </p>
 
     </div>
 
@@ -36,8 +38,73 @@
                 The system then sorts the shows based off the shrinkage estimation of the scores and
                 number of people that scored.
             </p>
-            <a href="https://github.com/flarelink/Anime_Recommender_System" target="_blank">Project Code</a>
+            <p>
+                Please see the project code for more details: <a href="https://github.com/flarelink/Anime_Recommender_System" target="_blank">Project Code</a>
+            </p>
+            <p>
+                Images from:
+                <ul>
+                    <li>myanimelist.net</li>
+                </ul>
+            </p>
 
+    </div>
+
+    <div class="content-section">
+        <div class="media">
+            <img src="{{ url_for('static', filename='project_showcase_pics/berlin_000001_000019_leftImg8bit.png') }}"
+                 width="50%" height=auto title="Orig CityScapes Image">
+            <img src="{{ url_for('static', filename='project_showcase_pics/city_fcn_out.png') }}"
+                 width="50%" height=auto hspace="20" title="FCN CityScapes Image">
+        </div>
+        <h3>Semantic Segmentation</h3>
+            <p>
+                Computer vision class final project for semantic segmentation.
+            </p>
+            <p>
+                Utilized 2 deep neural networks, Fully Convolutional Network (FCN) and SegNet, to perform semantic segmentation on the NYUv2 and Cityscapes datasets.
+                The metrics to evaluate the performance of the networks were: pixel accuracy, mean pixel accuracy, and intersection over union (IoU).
+            </p>
+            <p>
+                Please see the project code for more details: <a href="https://github.com/flarelink/cv_project_segmentation" target="_blank">Project Code</a>
+            </p>
+            <p>
+                Input image from:
+                <ul>
+                    <li>https://www.cityscapes-dataset.com/</li>
+                </ul>
+            </p>
+    </div>
+
+    <div class="content-section">
+        <div class="media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"
+                 width="224" height=auto title="Starry Night">
+            <img src="https://ichef.bbci.co.uk/images/ic/720x405/p0517py6.jpg"
+                 width="224" height=auto hspace="20" title="Cat">
+            <img src="{{ url_for('static', filename='project_showcase_pics/cat_starry_epoch_499.png') }}"
+                 width="224" height=auto hspace="20" title="Starry Cat">
+        </div>
+        <h3>PyTorch Neural Art</h3>
+            <p>
+                Pytorch neural art for fun! :D
+            </p>
+            <p>
+                This program will allow you to take two images and create a new transformed image. A style image is an image that will be used to affect a content image. An example would be some sort of art, such as Starry Night. A content image is an image that will have the style's art applied to it.
+            </p>
+            <p>
+                The provided run.sh file will take the existing parameters and create some art. The default content image is an image of a cat and the style image is Starry Night.
+            </p>
+            <p>
+                Please see the project code for more details: <a href="https://github.com/flarelink/PyTorch_Neural_Art" target="_blank">Project Code</a>
+            </p>
+            <p>
+                Input images from:
+                <ul>
+                    <li>https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg</li>
+                    <li>https://ichef.bbci.co.uk/images/ic/720x405/p0517py6.jpg</li>
+                </ul>
+            </p>
     </div>
 
 {% endblock content %}
