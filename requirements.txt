@@ -37,7 +37,7 @@ Flask_WTF == 0.14.2
 
 # flask_site/projects/face_privacy/utils.py: 3
 # flask_site/users/utils.py: 3
-Pillow == 6.2.0
+Pillow == 8.1.1
 
 # flask_site/posts/forms.py: 2,3
 # flask_site/projects/anime_rec/forms.py: 3,4
