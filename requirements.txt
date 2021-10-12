@@ -59,7 +59,7 @@ numpy == 1.17.4
 
 # flask_site/projects/face_privacy/program_files/haar_detect.py: 11
 # flask_site/projects/face_privacy/program_files/yolo_detect.py: 11
-opencv_python == 4.1.2.30
+opencv_python == 4.2.0.32
 
 # flask_site/projects/anime_rec/program_files/recommender.py: 1
 # flask_site/projects/anime_rec/program_files/utils.py: 3
