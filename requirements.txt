@@ -10,7 +10,7 @@
 # flask_site/projects/routes.py: 2
 # flask_site/users/routes.py: 2
 # flask_site/users/utils.py: 4
-Flask == 1.1.1
+Flask == 2.3.2
 
 # flask_site/__init__.py: 3
 Flask_Bcrypt == 0.7.1
